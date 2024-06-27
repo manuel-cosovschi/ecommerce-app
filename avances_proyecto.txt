@@ -1,0 +1,25 @@
+
+Listado de Avances del Proyecto de E-commerce
+
+1. Configuración Inicial del Proyecto:
+   - Creación del proyecto Angular usando Angular CLI.
+   - Configuración del componente principal AppComponent.
+   - Integración de RouterOutlet en AppComponent para manejo de rutas.
+
+2. Creación de Componentes Básicos:
+   - Componente Header (app-header): Implementado con enlaces de navegación utilizando routerLink.
+   - Componente Footer (app-footer): Implementado como pie de página de la aplicación.
+   - Componente Login (app-login): Implementado con un formulario reactivo para simulación de login.
+
+3. Configuración de Rutas:
+   - Definición de rutas en app.routes.ts para navegación entre los componentes creados.
+
+4. Verificación y Pruebas:
+   - Pruebas de navegación entre componentes utilizando los enlaces del componente Header.
+   - Verificación de la correcta visualización de los componentes Header, Footer y Login.
+
+Pendiente:
+   - Implementar componentes ProductList y ProductDetail.
+   - Implementar el servicio DataService para realizar peticiones GET.
+   - Configurar comunicación entre componentes usando @Input y @Output.
+   - Desplegar la aplicación en Firebase.
