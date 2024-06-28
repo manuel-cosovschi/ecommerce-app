@@ -1,5 +1,10 @@
-<div>
+<div class="product-list">
     <h2>Product List</h2>
-    <!-- Aquí puedes agregar la lista de productos -->
-</div>
+    <div *ngFor="let product of products" class="product-item">
+      <h3>{{ product.title }}</h3>
+      <p>{{ product.description }}</p>
+      <a [routerLink]="['/product', product.id]">View Details</a>
+    </div>
+  </div>
+  
   
