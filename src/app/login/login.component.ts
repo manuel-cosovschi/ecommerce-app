@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  successMessage: string | null = null;
 
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
@@ -21,6 +22,7 @@ export class LoginComponent {
 
   onSubmit(): void {
     console.log('Login exitoso', this.loginForm.value);
+    this.successMessage = 'Login exitoso';
     this.loginForm.reset();
   }
 }
