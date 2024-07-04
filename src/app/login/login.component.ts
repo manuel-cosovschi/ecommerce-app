@@ -12,21 +12,29 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  loginError: boolean = false;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]]
+      password: ['', Validators.required]
     });
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log('Login exitoso', this.loginForm.value);
-      this.authService.login();
+      const { username, password } = this.loginForm.value;
+      if (!this.authService.login(username, password)) {
+        this.loginError = true;
+      }
     }
   }
 }
+
+
+
+
+
 
 
 

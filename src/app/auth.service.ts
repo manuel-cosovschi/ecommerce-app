@@ -1,24 +1,55 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService as Auth0Service } from '@auth0/auth0-angular';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+interface User {
+  username: string;
+  password: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private loggedIn = new BehaviorSubject<boolean>(false);
 
-  constructor(public auth: Auth0Service, public router: Router) {}
+  private users: User[] = [
+    { username: 'manucosovs', password: 'yotambien' },
+    { username: 'martinmsoler', password: 'melacomotoda' }
+  ];
 
-  public login(): void {
-    this.auth.loginWithRedirect();
+  get isLoggedIn(): Observable<boolean> {
+    return this.loggedIn.asObservable();
   }
 
-  public logout(): void {
-    this.auth.logout({ logoutParams: { returnTo: document.location.origin } });
+  constructor(private router: Router) {}
+
+  login(username: string, password: string): boolean {
+    const user = this.users.find(u => u.username === username && u.password === password);
+    if (user) {
+      console.log('Login exitoso');
+      this.loggedIn.next(true);
+      this.router.navigate(['/productos']);
+      return true;
+    } else {
+      console.log('Login fallido');
+      this.loggedIn.next(false);
+      return false;
+    }
   }
 
-  public isAuthenticated$ = this.auth.isAuthenticated$;
+  logout() {
+    console.log('Cerrando sesión');
+    this.loggedIn.next(false);
+    this.router.navigate(['/login']);
+  }
 }
+
+
+
+
+
+
 
 
 

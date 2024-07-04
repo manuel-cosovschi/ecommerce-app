@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,20 +12,22 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  isLoggedIn = false;
+  isLoggedIn: Observable<boolean>;
 
   constructor(private authService: AuthService) {
-    this.authService.isAuthenticated$.subscribe((loggedIn: boolean) => this.isLoggedIn = loggedIn);
-  }
-
-  login() {
-    this.authService.login();
+    this.isLoggedIn = this.authService.isLoggedIn;
   }
 
   logout() {
+    console.log('Logout clicked');
     this.authService.logout();
   }
 }
+
+
+
+
+
 
 
 

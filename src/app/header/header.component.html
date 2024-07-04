@@ -1,13 +1,16 @@
 <header>
-  <nav *ngIf="isLoggedIn; else welcome">
+  <nav *ngIf="isLoggedIn | async; else welcome">
     <a routerLink="/productos">Inicio</a>
     <a routerLink="/carrito">Carrito</a>
     <a (click)="logout()">Cerrar Sesión</a>
   </nav>
   <ng-template #welcome>
-    <div class="welcome-message">Bienvenido! Por favor, <a routerLink="/login">inicia sesión</a></div>
+    <div class="welcome-message">Bienvenido a Ropa de Mierda!<a routerLink="/login"> inicia sesión</a></div>
   </ng-template>
 </header>
+
+
+
 
 
 
