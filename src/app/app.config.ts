@@ -1,13 +1,17 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { AuthModule } from '@auth0/auth0-angular';
 
-import { routes } from './app.routes';
+@NgModule({
+  imports: [
+    AuthModule.forRoot({
+      domain: 'dev-wxfi3qbmh2kxkaus.us.auth0.com',
+      clientId: 'muKrWnonVB6LEYHJVcmQqayW5oB4w06m',
+      authorizationParams: {
+        redirect_uri: window.location.origin,
+      },
+    }),
+  ],
+})
+export class AppModule {}
 
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
-    provideHttpClient()
-  ]
-};
+
